@@ -107,11 +107,12 @@ h2 {
     /* font-family: "ms pgothic web"; */
     /* font-family: "Blox2"; */
     /* font-family: "BlueScreen"; */
-    font-family: "ByteBounce";
-    /* font-family: "DPComic"; */
+    /* font-family: "ByteBounce"; */
+    font-family: "DPComic";
     /* font-style: italic; */
-    font-size: 50px;
-    color:yellowgreen;
+    font-size: 40px;
+    /* color:yellowgreen; */
+    color: #e841dd;
     margin-bottom: -20px;
 }
 #frontpage-intro a {
@@ -253,13 +254,14 @@ figcaption {
     background: url("../images/swirl.gif") #000232;
     background-blend-mode: overlay;
     color: rgb(220, 219, 219);
-    font-size: large;
+    font-size: larger;
     font-family: "ms pgothic web", tahoma, sans-serif;
     border-image: url("../images/border.gif") 0 10 repeat;
     /* border-image: url("../images/border-1.jpeg"); */
     border-image-repeat: round;
     border-left: 20px solid;
     border-right: 20px solid;
+    margin-top: 10%;
     overflow: auto;
     /* font: 15px tahoma, sans-serif; */
 }
@@ -276,7 +278,8 @@ figcaption {
     background-clip: text;
     -webkit-text-fill-color: transparent;
     /* font-family: "Blox2"; */
-    font-family: "Tourney";
+    /* font-family: "Tourney"; */
+    font-family: "DPComic";
     color: #FF13F0;
     margin-bottom: -10px;
 }
