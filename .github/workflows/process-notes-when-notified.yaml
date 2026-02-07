@@ -1,0 +1,28 @@
+name: process markdown to webpage
+
+on:
+  repository_dispatch:
+    types: [notes update]
+
+jobs:
+  process:
+    runs-on: ubuntu-lastest
+
+    steps:
+
+      # might wanna make installing the lib as one of the steps..
+      - name: checkout notes repo
+        uses: actions/checkout@v3
+        with:
+          repository: luyuanfan/misc
+
+      - name: convert markdown to HTML
+        run: |
+          # marked -i 5g.md -o 5g.html
+          echo "well well"
+
+      # - name: commit and push changes
+      #   run: |
+      #     git add html/5g.html
+      #     git commit -m "sync webpage to notes repo content"
+      #     git push
