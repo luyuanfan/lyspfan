@@ -312,6 +312,7 @@ figcaption {
     text-shadow: 1px 0px #cfb28f !important;
     font-size: 25px !important;
     text-decoration: none !important;
+    text-transform: lowercase;
 }
 .nav-bar.stardew-text a {
     text-decoration: none;
