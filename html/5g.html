@@ -1,23 +1,42 @@
-<h2>traits</h2>
+<!DOCTYPE html>
+
+<html>
+
+<head> <!-- Some style def for the entire page -->
+    <style>
+        body {
+            background-image: url("../images/bkgds/background-slow.min.gif");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            
+        }
+    </style>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/animation.css">
+    <link rel="icon" type="image/x-icon" href="../images/stardew/star.png" class="favicon">
+    <script src="../js/footer.js" type="text/javascript" defer></script>
+    <title>Misc</title>
+</head>
+
+<body style="text-transform: none;">
+    <nav class="nav-bar retro-text">
+        <hr>
+        <div><a href="../index.html">Home</a></div>
+        <hr>
+    </nav>
+
+    <div class="banner retro-text">
+        <h1>Other things</h1>
+    </div>
+
+    <div id="button-style-box">
+<h2>goodies</h2>
 <p>data rate is up to 10 times faster than 4g (up to 10 Gbps in lab testing, 20 Gbps theoretically); latency is 60 to 120 times lower than 4g (less than 10 milliseconds); more bandwidth ranges (bw unit hertz, which means there are more options of frequencies). 
-<img src="../images/notes/Pasted%20image%2020260205140032.png" alt=""></p>
-<h2>turning info into waves</h2>
-<p><img src="../images/notes/Pasted%20image%2020260205223725.png" alt=""></p>
-<ul>
-<li>(modulating signal) the wave that carries actual information; different types of information (e.g., video, audio, digital) each have a natural frequency range that it falls into. </li>
-<li>(carrier signal) we want to modulate the actual signal onto a carrier signal so that the signal is on a special frequency (one that the receiver is configured to listen on), as opposed to having it in its natural frequency; since in the latter case, all signals collide. <a href="https://electronics.stackexchange.com/questions/598767/what-is-the-purpose-of-a-carrier-signal-in-communication-technology">ref to a good stack exchange answer</a></li>
-<li>(signal modulation) manipulate one or more properties of periodic waveforms to carry information. the vanilla signal is called the carrier signal. <ul>
-<li>amplitude modulation (AM) - e.g., am radio, TV signal</li>
-<li>frequency modulation (FM) - e.g., most other things? </li>
-<li>pulse modulation (rare and antiquated) - toggling the sine wave on and off</li>
-</ul>
-</li>
-<li>(modem) stands for modulator-demodulator; has a transmitter and a receiver; modulates analog signal to digital data and the other way around; allows all wireless communication. </li>
-<li>(hertz) unit of frequency, one hertz = one event per second.</li>
-</ul>
+<img src="images/Pasted%20image%2020260205140032.png" alt=""></p>
 <hr>
-<h2>Core architecture</h2>
-<p><img src="../images/notes/Pasted%20image%2020260207114532.png" alt=""></p>
+<h2>core architecture</h2>
+<p><img src="images/Pasted%20image%2020260207114532.png" alt=""></p>
 <ul>
 <li>three major parts: UE, radio access network (ran), and core network</li>
 </ul>
@@ -62,7 +81,7 @@
 <h4>... (space for other interfaces)</h4>
 <h3>protocols</h3>
 <h4>n1 and n2 interfaces protocol stack</h4>
-<p><img src="../images/notes/Pasted%20image%2020260207141752.png" alt=""></p>
+<p><img src="images/Pasted%20image%2020260207141752.png" alt=""></p>
 <h4>nas (on n1)</h4>
 <p>ensures secure and reliable communication between the UE and the network, <em>even before granting it access to the network</em>. can have the following types of messages: 
 	- authentication request (phone sends out request)
@@ -117,9 +136,24 @@
 </ul>
 </li>
 </ul>
+<h4>... (space for other core services)</h4>
 <hr>
-<h2>cell search and connection</h2>
-<h3>SA initial attachment</h3>
+<h2>important processes</h2>
+<h3>cell search</h3>
+<p>38.300 - 5.2.5.3 defined 5G/NR as follows: </p>
+<blockquote>
+<p><em>Cell search is the procedure by which a UE acquires time and frequency synchronization with a cell and detects the Cell ID of that cell. NR cell search is based on the primary and secondary synchronization signals, and PBCH DMRS, located on the synchronization raster.</em></p>
+</blockquote>
+<p>me when...</p>
+<h3>cell selection</h3>
+<p>usually, ue is surrounded by many cells and can detect their signals; however, it can only camp on cell and use that one service; it must pick the best available cell that matches its registered or selected network and policies.</p>
+<ul>
+<li>a cell can be suitable (one it can sure connect to), and acceptable (not suitable but can be used as an emergency cell), and maybe be none of them; and out of all the suitable cell, ue will look at the signal strength it seems like. </li>
+<li>interestingly, if ue camps successfully and normal on a cell, it enters a <strong>idle</strong> state (just pointing out that it might be a confusing word)</li>
+<li>ue will also periodically compare the priority and signal quality of the current cell with neighboring cells, and if it meets another cell with higher priority or better signal quality, it might initiate a cell reselection process; the access network might also force a reselection. 
+<a href="https://www.sharetechnote.com/html/5G/5G_Cell_Selection.html">ref: full process here</a></li>
+</ul>
+<h3>sa initial attachment</h3>
 <p>stands for Stand Alone initial attachment; process in a nutshell (first layer bullet points): </p>
 <ul>
 <li><strong>as soon as UE powers on, this process starts</strong></li>
@@ -133,7 +167,8 @@
 </ul>
 </li>
 <li><strong>RRC connection establishment</strong><ul>
-<li>stands for radio resource control;</li>
+<li>stands for radio resource control; it&#39;s a protocol; TODO.</li>
+<li><a href="http://sharetechnote.com/html/5G/5G_RRC_Overview.html">ref</a></li>
 </ul>
 </li>
 <li><strong>UE sends registration request to AMF to register to the network</strong></li>
@@ -143,11 +178,11 @@
 <li>RRC Reconfiguration: Network reconfigures RRC for the registered UE based on various UE capability.</li>
 <li>PDU Session Establishment: The process of establishing data pipe. UE initiate the process and network respond to the request and setting up the data pipe.</li>
 </ul>
-<p><img src="../images/notes/Pasted%20image%2020260206155706.png" alt=""></p>
+<p><img src="images/Pasted%20image%2020260206155706.png" alt=""></p>
 <hr>
-<h2>core authentication</h2>
+<h3>core authentication</h3>
 <p>The entire signaling path for Authentication process is UE &lt;-- N1--&gt; AMF &lt;--N12--&gt;AUSF&lt;--N13--&gt;UDM
-<img src="../images/notes/Pasted%20image%2020260207134509.png" alt=""></p>
+<img src="images/Pasted%20image%2020260207134509.png" alt=""></p>
 <ul>
 <li>seaf (SEcurity Anchor Function) is a sub-function of amf.</li>
 <li>process<ul>
@@ -160,18 +195,95 @@
 </ul>
 <p><a href="https://www.sharetechnote.com/html/5G/5G_Core_Authentication.html">ref: full process with a lot lot more details</a></p>
 <hr>
+<h2>ran architecture</h2>
+<h3>CU-CP</h3>
+<img src="images/Pasted image 20260128225349.png" width="70%">
+The CU-CP, or Central Unit - Control Plane, is responsible for the handling of control plane messaging, specifically, the control plane part of the PDCP protocol. In the CU-CP, there are five main components and four main interfaces. The CU-CP communicates directly with the 5G Core (via the N2 interface), the CU-UP (via the E1 interface), the DU-high (via the F1-c interface) and can also be connected to the near-RT RIC (via the E2 interface). This implementation takes a UE-centric approach.
+- near-RT RIC -- near-realtime ran intelligence controller 
+
+<p><strong>Components:</strong></p>
+<ul>
+<li>CU-UP Processor: Custom component for handling each CU-UP connected to the CU-CP. Multiple CU-UPs can be connected to one CU-CP, as a result the E1AP is created inside the CU-UP processor for each connected CU-UP.     </li>
+<li>DU Processor: Custom component for handling DUs for connected to the CU-CP. Each connected DU has its own DU processor with bundled F1AP, PDCP, and RRC procedures. Each UE connected to the DU also has its own RRC UE containing the PDCP processes.<ul>
+<li>DU -- distributed unit</li>
+<li>PDCP -- packet data convergence protocol<ul>
+<li>PDCP does seems very simple. Just &quot;adding the PDCP header to the incoming data and forward to RLC in downlink&quot;, or &quot;removing the PDCP header from the incoming packet and forward it to IP layer in case of uplink&quot;</li>
+</ul>
+</li>
+<li>RRC -- radio resource control</li>
+</ul>
+</li>
+<li>UE Manager: Custom component for managing connected UEs in the CU-CP. Responsible for adding and removing UEs and providing relevant UE information to other processes. Communicates information to/from the CU-UP, DU and Core.</li>
+<li>Measurement Manager: Custom component for managing cell measurement within the gNB.</li>
+<li>Mobility Manager: Custom component for managing UE mobility in the CU-CP.</li>
+</ul>
+<h3>CU-UP</h3>
+<img src="images/Pasted image 20260128225921.png" width="70%">
+The CU-UP, or Central Unit - User Plane, is responsible for the handling of user plane messaging. Specifically the user plane aspect of the PDCP and SDAP protocols. In the implementation of the CU-UP, there are four main components and four main interfaces. The CU-UP communicates directly with the UPF in the 5G Core (via the N3 interface), the CU-UP (via the E1 interface), the DU-high (via the F1-u interface), and can also be connected to the near-RT RIC (via the E2 interface).
+
+<p><strong>Components:</strong></p>
+<ul>
+<li>UE Manager: Custom component for managing connected UEs in the CU-UP. Responsible for adding and removing UEs and providing relevant UE information to other processes. Communicates information to/from the CU-CP, DU and Core.   </li>
+<li>GTP-U: The GPRS Tunneling Protocol - User Plane (GTP-U) is responsible for transporting User Plane traffic to and from the UPF of the 5G Core via the N3 interface.</li>
+<li>SDAP: The Service Data Adaptation Protocol (SDAP) is responsible for adaption and mapping of Quality of Service (QoS) requirements on User Plan traffic.</li>
+<li>PDCP: The Packet Data Convergence Protocol (PDCP) is responsible for handling the User Plane data before/ after it enters the DU-high.</li>
+</ul>
+<img src="images/Pasted image 20260128230219.png" width="70%">
+
+<h3>DU-High</h3>
+<img src="images/Pasted image 20260128231329.png" width="70%">
+The DU-high, or Distributed Unit - High, is responsible for the handling of both uplink and downlink traffic. Specifically the MAC and RLC processing of these signals. The DU-high, has three main components and three main interfaces. The DU-high communicates directly with the CU-CP and CU-UP via the F1-c and F1-u interfaces, the DU-low via the FAPI interface, and can also be connected to the near-RT RIC via the E2 interface.
+
+<p><strong>Components:</strong></p>
+<ul>
+<li><a href="https://docs.srsran.com/projects/project/en/latest/dev_guide/source/software_arch/source/DU_high/source/du_manager.html#du-manager">DU Manager</a>: The DU Manager is responsible for managing the DU, specifically the connected UEs and RAN Resources.</li>
+<li><a href="https://docs.srsran.com/projects/project/en/latest/dev_guide/source/software_arch/source/DU_high/source/rlc.html#rlc-overview">RLC</a>: The Radio Link Control (RLC) layer sits between the MAC in the DU-high and the F1AP/PDCP in the CU, and provides the transport services for SRBs and PRBs between these layers. It operates in three modes: transparent, unacknowledged and acknowledged.</li>
+<li><a href="https://docs.srsran.com/projects/project/en/latest/dev_guide/source/software_arch/source/DU_high/source/mac.html#mac">MAC</a>: The Medium Access Control (MAC) is responsible for the encoding and decoding of MAC PDUs, scheduling uplink and downlink grants and other control services.</li>
+</ul>
+<h4>MAC</h4>
+<p>The main responsibilities of the MAC are:</p>
+<ul>
+<li>Encoding and decoding of MAC PDUs that are sent/received to the PHY via the FAPI interface</li>
+<li>Contains the gNB scheduler, which allocates DL/UL grants for System Information, Paging, UE data (RLC PDUs + MAC CEs) and Random Access handling.</li>
+<li>Demultiplexing and forwarding of decoded MAC Rx SDUs to their respective logical channel.</li>
+<li>Handle received MAC CEs</li>
+<li>PRACH handling and RNTI allocation</li>
+</ul>
+<h3>DU-low</h3>
+<img src="images/Pasted image 20260128233933.png" width="70%">
+The DU-low, or Distributed Unit - Low, is responsible for the handling of both uplink and downlink traffic. Specifically, it handles the Upper PHY processing related to these signals. The DU-low, contains only the Upper PHY and has two main interfaces. The DU-low communicates directly with the DU-high via the FAPI interface, and with the RU via the Open FrontHaul (OFH) interface. The lower PHY processing is carried out in the RU. This architecture is specific to ORAN Split 7.2.
+
+<p><strong>Components:</strong></p>
+<ul>
+<li>Upper PHY: The Upper PHY handles the processing of UL and DL signals coming from and to the RU.</li>
+</ul>
+<h3>Putting it all together</h3>
+<p>![[Pasted image 20260128234332.png]]</p>
+<hr>
 <h2>random topics</h2>
+<h3>turning info into waves</h3>
+<p><img src="images/Pasted%20image%2020260205223725.png" alt=""></p>
+<ul>
+<li>(modulating signal) the wave that carries actual information; different types of information (e.g., video, audio, digital) each have a natural frequency range that it falls into. </li>
+<li>(carrier signal) we want to modulate the actual signal onto a carrier signal so that the signal is on a special frequency (one that the receiver is configured to listen on), as opposed to having it in its natural frequency; since in the latter case, all signals collide. <a href="https://electronics.stackexchange.com/questions/598767/what-is-the-purpose-of-a-carrier-signal-in-communication-technology">ref to a good stack exchange answer</a></li>
+<li>(signal modulation) manipulate one or more properties of periodic waveforms to carry information. the vanilla signal is called the carrier signal. <ul>
+<li>amplitude modulation (AM) - e.g., am radio, TV signal</li>
+<li>frequency modulation (FM) - e.g., most other things? </li>
+<li>pulse modulation (rare and antiquated) - toggling the sine wave on and off</li>
+</ul>
+</li>
+<li>(modem) stands for modulator-demodulator; has a transmitter and a receiver; modulates analog signal to digital data and the other way around; allows all wireless communication. </li>
+<li>(hertz) unit of frequency, one hertz = one event per second.</li>
+</ul>
 <h3>bandwidth</h3>
-<p><img src="../images/notes/Pasted%20image%2020260205143540.png" alt="">
+<p><img src="images/Pasted%20image%2020260205143540.png" alt="">
 Channel Bandwidth(CBW) = (N_RB x NumOfSubcarrier x SCS) + (GuardBand x 2)</p>
-<h3>synchronization</h3>
-<p>why is synchronization necessary? </p>
 <h3>mmWaves (millimeter wave) and massive MIMO</h3>
 <ul>
 <li>(subcarrier spacing) scs or numerology.</li>
-<li>(sim) gives a special subscriber identity, so that the cellular network can link this user to a plan.</li>
+<li>(sim) gives a special subscriber identity, so that the cellular network can link this user to a plan.
+srsran and open5gs run an open RAN compliant gnb (interestingly core is not included in the gnb part, so it&#39;s just the part with srsran and usrp, it&#39;s the definition apparently)</li>
 </ul>
-<p>srsran and open5gs run an open RAN compliant gnb (interestingly core is not included in the gnb part, so it&#39;s just the part with srsran and usrp)</p>
 <h3>two frequency ranges</h3>
 <p>In NR, there are two large frequency range specified in 3GPP. One is what we usually call &quot;Sub 6 Ghz&quot; (also FR1) and the other is what we usually call &quot;millimeter wave&quot; (mmWaves, also FR2). Depending on the ranges, the maximum bandwidth and subcarrier spacing varies.</p>
 <table>
@@ -195,69 +307,10 @@ Channel Bandwidth(CBW) = (N_RB x NumOfSubcarrier x SCS) + (GuardBand x 2)</p>
 </tbody></table>
 <p>In Sub 6 Ghz, the maximum bandwidth is 100 Mhz and in millimeter wave range the maximum bandwidth is 400 Mhz. Some subcarrier spacing (15, 30 Khz)  can be used only in Sub 6 Ghz and some subcarrier spacing (120 Khz) can be used in millimeter wave range only, and some subcarrier spacing (60 Khz) can be used both in sub 6 Ghz and millimeter wave range. </p>
 <p>ref: <a href="https://www.sharetechnote.com/html/5G/5G_FR_Bandwidth.html#38_101_1_Table_5_2_1">a table that maps NR bands to frequencies</a></p>
-<hr>
-<h2>RAN architecture</h2>
-<h3>CU-CP</h3>
-<img src="../images/notes/Pasted image 20260128225349.png" width="70%">
-The CU-CP, or Central Unit - Control Plane, is responsible for the handling of control plane messaging, specifically, the control plane part of the PDCP protocol. In the CU-CP, there are five main components and four main interfaces. The CU-CP communicates directly with the 5G Core (via the N2 interface), the CU-UP (via the E1 interface), the DU-high (via the F1-c interface) and can also be connected to the near-RT RIC (via the E2 interface). This implementation takes a UE-centric approach.
-- near-RT RIC -- near-realtime ran intelligence controller 
 
-<p><strong>Components:</strong></p>
-<ul>
-<li>CU-UP Processor: Custom component for handling each CU-UP connected to the CU-CP. Multiple CU-UPs can be connected to one CU-CP, as a result the E1AP is created inside the CU-UP processor for each connected CU-UP.     </li>
-<li>DU Processor: Custom component for handling DUs for connected to the CU-CP. Each connected DU has its own DU processor with bundled F1AP, PDCP, and RRC procedures. Each UE connected to the DU also has its own RRC UE containing the PDCP processes.<ul>
-<li>DU -- distributed unit</li>
-<li>PDCP -- packet data convergence protocol<ul>
-<li>PDCP does seems very simple. Just &quot;adding the PDCP header to the incoming data and forward to RLC in downlink&quot;, or &quot;removing the PDCP header from the incoming packet and forward it to IP layer in case of uplink&quot;</li>
-</ul>
-</li>
-<li>RRC -- radio resource control</li>
-</ul>
-</li>
-<li>UE Manager: Custom component for managing connected UEs in the CU-CP. Responsible for adding and removing UEs and providing relevant UE information to other processes. Communicates information to/from the CU-UP, DU and Core.</li>
-<li>Measurement Manager: Custom component for managing cell measurement within the gNB.</li>
-<li>Mobility Manager: Custom component for managing UE mobility in the CU-CP.</li>
-</ul>
-<h3>CU-UP</h3>
-<img src="../images/notes/Pasted image 20260128225921.png" width="70%">
-The CU-UP, or Central Unit - User Plane, is responsible for the handling of user plane messaging. Specifically the user plane aspect of the PDCP and SDAP protocols. In the implementation of the CU-UP, there are four main components and four main interfaces. The CU-UP communicates directly with the UPF in the 5G Core (via the N3 interface), the CU-UP (via the E1 interface), the DU-high (via the F1-u interface), and can also be connected to the near-RT RIC (via the E2 interface).
+    </div>
 
-<p><strong>Components:</strong></p>
-<ul>
-<li>UE Manager: Custom component for managing connected UEs in the CU-UP. Responsible for adding and removing UEs and providing relevant UE information to other processes. Communicates information to/from the CU-CP, DU and Core.   </li>
-<li>GTP-U: The GPRS Tunneling Protocol - User Plane (GTP-U) is responsible for transporting User Plane traffic to and from the UPF of the 5G Core via the N3 interface.</li>
-<li>SDAP: The Service Data Adaptation Protocol (SDAP) is responsible for adaption and mapping of Quality of Service (QoS) requirements on User Plan traffic.</li>
-<li>PDCP: The Packet Data Convergence Protocol (PDCP) is responsible for handling the User Plane data before/ after it enters the DU-high.</li>
-</ul>
-<img src="../images/notes/Pasted image 20260128230219.png" width="70%">
+    <footer-component id="footer"></footer-component>
 
-<h3>DU-High</h3>
-<img src="../images/notes/Pasted image 20260128231329.png" width="70%">
-The DU-high, or Distributed Unit - High, is responsible for the handling of both uplink and downlink traffic. Specifically the MAC and RLC processing of these signals. The DU-high, has three main components and three main interfaces. The DU-high communicates directly with the CU-CP and CU-UP via the F1-c and F1-u interfaces, the DU-low via the FAPI interface, and can also be connected to the near-RT RIC via the E2 interface.
-
-<p><strong>Components:</strong></p>
-<ul>
-<li><a href="https://docs.srsran.com/projects/project/en/latest/dev_guide/source/software_arch/source/DU_high/source/du_manager.html#du-manager">DU Manager</a>: The DU Manager is responsible for managing the DU, specifically the connected UEs and RAN Resources.</li>
-<li><a href="https://docs.srsran.com/projects/project/en/latest/dev_guide/source/software_arch/source/DU_high/source/rlc.html#rlc-overview">RLC</a>: The Radio Link Control (RLC) layer sits between the MAC in the DU-high and the F1AP/PDCP in the CU, and provides the transport services for SRBs and PRBs between these layers. It operates in three modes: transparent, unacknowledged and acknowledged.</li>
-<li><a href="https://docs.srsran.com/projects/project/en/latest/dev_guide/source/software_arch/source/DU_high/source/mac.html#mac">MAC</a>: The Medium Access Control (MAC) is responsible for the encoding and decoding of MAC PDUs, scheduling uplink and downlink grants and other control services.</li>
-</ul>
-<h4>MAC</h4>
-<p>The main responsibilities of the MAC are:</p>
-<ul>
-<li>Encoding and decoding of MAC PDUs that are sent/received to the PHY via the FAPI interface</li>
-<li>Contains the gNB scheduler, which allocates DL/UL grants for System Information, Paging, UE data (RLC PDUs + MAC CEs) and Random Access handling.</li>
-<li>Demultiplexing and forwarding of decoded MAC Rx SDUs to their respective logical channel.</li>
-<li>Handle received MAC CEs</li>
-<li>PRACH handling and RNTI allocation</li>
-</ul>
-<h3>DU-low</h3>
-<img src="../images/notes/Pasted image 20260128233933.png" width="70%">
-The DU-low, or Distributed Unit - Low, is responsible for the handling of both uplink and downlink traffic. Specifically, it handles the Upper PHY processing related to these signals. The DU-low, contains only the Upper PHY and has two main interfaces. The DU-low communicates directly with the DU-high via the FAPI interface, and with the RU via the Open FrontHaul (OFH) interface. The lower PHY processing is carried out in the RU. This architecture is specific to ORAN Split 7.2.
-
-<p><strong>Components:</strong></p>
-<ul>
-<li>Upper PHY: The Upper PHY handles the processing of UL and DL signals coming from and to the RU.</li>
-</ul>
-<h3>Putting it all together</h3>
-<p>![[Pasted image 20260128234332.png]]</p>
-
+</body>
+</html>
