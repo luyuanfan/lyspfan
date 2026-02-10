@@ -38,6 +38,10 @@
     font-family: "StardewValley";
     src: url("../fonts/StardewValley.woff2") format(woff2)
 }
+@font-face {
+    font-family: "ComicSansMS";
+    src: url("../fonts/ComicSansMS.ttf") format("truetype")
+}
 @keyframes tilt-shaking {
     0% { transform: rotate(0deg); }
     25% { transform: rotate(7deg); }
@@ -108,7 +112,7 @@ h2 {
 }
 #frontpage-intro a {
     margin-top: 50px;
-    font-family: "Comic Sans MS", sans-serif;
+    font-family: "ComicSansMS", sans-serif;
     color: whitesmoke;
     margin: 0 5px;
 }
@@ -125,7 +129,7 @@ h2 {
     margin-bottom: 10px;
 }
 #footer span, #footer a {
-    font-family: "Comic Sans MS", sans-serif;
+    font-family: "ComicSansMS", sans-serif;
     text-decoration: underline;
     color: rgb(217, 217, 217);
     bottom: 0px;
