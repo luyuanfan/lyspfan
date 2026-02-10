@@ -65,9 +65,7 @@ h2 {
     font-size: 17px !important;
 }
 .banner {
-    /* font-family: "Tourney"; */
     font-family: "DPComic";
-    /* color: whitesmoke; */
     color: red;
     font-size: 25px;
     display: flex;
@@ -103,15 +101,8 @@ h2 {
     text-align: center;
 }
 #frontpage-intro p {
-    /* font-family: 'Tourney'; */
-    /* font-family: "ms pgothic web"; */
-    /* font-family: "Blox2"; */
-    /* font-family: "BlueScreen"; */
-    /* font-family: "ByteBounce"; */
     font-family: "DPComic";
-    /* font-style: italic; */
     font-size: 40px;
-    /* color:yellowgreen; */
     color: #e841dd;
     margin-bottom: -20px;
 }
@@ -163,7 +154,6 @@ h2 {
     color: blue;
 }
 .banner.retro-text {
-    /* color: whitesmoke; */
     font-family: "DPComic";
     font-size: 20px;
     color: blue;
@@ -257,35 +247,26 @@ figcaption {
     font-size: larger;
     font-family: "ms pgothic web", tahoma, sans-serif;
     border-image: url("../images/border.gif") 0 10 repeat;
-    /* border-image: url("../images/border-1.jpeg"); */
     border-image-repeat: round;
     border-left: 20px solid;
     border-right: 20px solid;
-    margin-top: 10%;
     overflow: auto;
-    /* font: 15px tahoma, sans-serif; */
 }
 .crazy-box a {
     color: #e841dd;
 }
 .crazy-text {
-    /* font-family: "ByteBounce"; */
-    /* font-family: "BlueScreen"; */
     background-image: url("../images/swirl.gif");
-    /* background: #FF13F0; */
     background-blend-mode: overlay;
     background-repeat: repeat;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    /* font-family: "Blox2"; */
-    /* font-family: "Tourney"; */
     font-family: "DPComic";
     color: #FF13F0;
     margin-bottom: -10px;
 }
 .inline-img {
     display: inline-block;
-    /* vertical-align: text-top; */
     vertical-align: sub;
     margin-left: -1px;
     margin-top: 5px;
