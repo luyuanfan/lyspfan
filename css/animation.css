@@ -153,3 +153,14 @@
         transform:rotate(360deg); 
     } 
 }
+@keyframes tilt-shaking {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(7deg); }
+    50% { transform: rotate(0deg); }
+    75% { transform: rotate(-7deg); }
+    100% { transform: rotate(0deg); }
+}
+.tilt-shaking {
+    animation: tilt-shaking 0.5s infinite;
+    display: inline-block;
+}
