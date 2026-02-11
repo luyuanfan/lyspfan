@@ -73,7 +73,8 @@ body {
 .banner.retro-text {
     font-family: "DPComic";
     font-size: 20px;
-    color: blue;
+    color: rgb(0, 0, 249);
+    text-shadow: -0.5px 0 rgb(159, 205, 255), 0 0.5px rgb(159, 205, 255), 0.5px 0 rgb(159, 205, 255), 0 -0.5px rgb(159, 205, 255);
 }
 #frontpage-box {
     display: flex;
@@ -181,8 +182,9 @@ figcaption {
 }
 .nav-bar.retro-text a {
     padding: 0 10px 0 5px;
-    font-size: 25px;
-    color: blue;
+    font-size: 28px;
+    color: rgb(0, 0, 249);
+    text-shadow: -0.5px 0 rgb(159, 205, 255), 0 0.5px rgb(159, 205, 255), 0.5px 0 rgb(159, 205, 255), 0 -0.5px rgb(159, 205, 255);
     text-align: left;
     text-decoration: none;
 }
