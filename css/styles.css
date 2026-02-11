@@ -74,7 +74,6 @@ body {
     font-family: "DPComic";
     font-size: 20px;
     color: rgb(0, 0, 249);
-    text-shadow: -0.5px 0 rgb(159, 205, 255), 0 0.5px rgb(159, 205, 255), 0.5px 0 rgb(159, 205, 255), 0 -0.5px rgb(159, 205, 255);
 }
 #frontpage-box {
     display: flex;
@@ -101,6 +100,7 @@ body {
     text-decoration: underline;
     color: rgb(217, 217, 217);
     line-height: 0.5em;
+    margin: 1px;
 }
 #button-style-box {
     background-color: #adadad;
@@ -175,25 +175,24 @@ figcaption {
     color: whitesmoke !important;
 }
 .nav-bar.crazy-text a {
-    padding: 0 10px 0 5px;
+    padding: 0 40px 0 5px;
     color: rgb(208, 208, 208);
-    font-size: 23px;
+    font-size: 25px;
     text-decoration: none;
 }
 .nav-bar.retro-text a {
     padding: 0 10px 0 5px;
     font-size: 28px;
     color: rgb(0, 0, 249);
-    text-shadow: -0.5px 0 rgb(159, 205, 255), 0 0.5px rgb(159, 205, 255), 0.5px 0 rgb(159, 205, 255), 0 -0.5px rgb(159, 205, 255);
     text-align: left;
     text-decoration: none;
 }
 .crazy-box {
-    width: 40em;
+    margin-top: 12vw;
+    width: 30em;
     max-width: 90vw;
     overflow: auto;
     padding: 30px;
-    width: 37%;
     background: url("../images/swirl.gif") #000232;
     background-blend-mode: overlay;
     color: rgb(220, 219, 219);
@@ -203,7 +202,6 @@ figcaption {
     border-image-repeat: round;
     border-left: 20px solid;
     border-right: 20px solid;
-    overflow: auto;
 }
 .crazy-box a {
     color: #e841dd;
