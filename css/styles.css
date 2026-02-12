@@ -188,10 +188,7 @@ figcaption {
     text-decoration: none;
 }
 .crazy-box {
-    margin-top: 12vw;
-    width: 30em;
-    max-width: 90vw;
-    overflow: auto;
+    width: 40%;
     padding: 30px;
     background: url("../images/swirl.gif") #000232;
     background-blend-mode: overlay;
