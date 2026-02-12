@@ -11,6 +11,7 @@ class FooterComponent extends HTMLElement {
         <span>[<a href="html/5g.html">5g notes</a>]</span>
         <br>
         <span onclick="Copy()" onmouseover="" style="cursor: pointer;" data-toggle="tooltip" data-placement="bottom" title="copied">[lyspfan@gmail.com]</span>
+        <span>[<a href="https://github.com/luyuanfan/">github</a>]</span>
         `;
     }
   }
