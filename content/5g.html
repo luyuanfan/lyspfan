@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+
+<html>
+
+<head> <!-- Some style def for the entire page -->
+    <style>
+        body {
+            background-image: url("../images/background/background-slow.min.gif");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            
+        }
+    </style>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/animation.css">
+    <link rel="icon" type="image/x-icon" href="../images/stardew/star.png" class="favicon">
+    <script src="../js/footer.js" type="text/javascript" defer></script>
+    <title>Misc</title>
+</head>
+
+<body style="text-transform: none;">
+    <nav class="nav-bar retro-text">
+        <hr>
+        <div><a href="../index.html">Home</a></div>
+        <hr>
+    </nav>
+
+    <div class="banner retro-text">
+        <h1>Other things</h1>
+    </div>
+
+    <div id="button-style-box">
+<h2 class="retro-h2">goodies</h2>
+<p>data rate is up to 10 times faster than 4g (up to 10 Gbps in lab testing, 20 Gbps theoretically); latency is 60 to 120 times lower than 4g (less than 10 milliseconds); more bandwidth ranges (bw unit hertz, which means there are more options of frequencies). 
+<img src="images/Pasted%20image%2020260205140032.png" alt=""></p>
+<hr>
+<h2 class="retro-h2">core architecture</h2>
+<p><img src="images/Pasted%20image%2020260207114532.png" alt=""></p>
+<ul>
+<li>three major parts: UE, radio access network (ran), and core network</li>
+</ul>
+<h3>interfaces</h3>
+<p>in general it defines the connection between two things and defines how they can interact with each other; each interface has its own rules and protocols that it operates on.</p>
+<p>one way to think about it is that the further apart these two things are in the network, the more this interface has to consists of. for example, if the two things are two endpoints in the network, then the mechanism of the interface has to involve lots of the network protocol stack (which is close to this case here); if the two things are two processes on the same host, the interface might just be the interprocess communication protocols. anyways, think of <strong>what boundaries are being crossed</strong>. </p>
+<h4>n1 interface</h4>
+<p>so of course it&#39;s a super abstract path, since ue cannot directly connect to the core amf. instead, it must go through the radio network which must relay the connection to the core.</p>
+<h4>n2 (NG) interface</h4>
+<ul>
+<li>NG interface (next generation interface) is <strong>just n2</strong>, only n2 has a special name; supports exchanging signals between the 5GC and the NG-RAN; on the application layer of this connection runs the NGAP protocol.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>layer</th>
+<th>protocol</th>
+<th>job</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>application</strong></td>
+<td>ngap</td>
+<td>defines <em>what</em> messages to send (e.g., &quot;set up this ue context&quot;)</td>
+</tr>
+<tr>
+<td><strong>transport</strong></td>
+<td>sctp</td>
+<td>ensures messages arrive reliably and in order</td>
+</tr>
+<tr>
+<td><strong>network</strong></td>
+<td>ip</td>
+<td>routes packets from gnb&#39;s ip address to amf&#39;s ip address</td>
+</tr>
+<tr>
+<td><strong>data link/physical</strong></td>
+<td>ethernet, fiber, etc.</td>
+<td>actually transmits the bits (1s and 0s)</td>
+</tr>
+</tbody></table>
+<h4>... (space for other interfaces)</h4>
+<h3>protocols</h3>
+<h4>n1 and n2 interfaces protocol stack</h4>
+<p><img src="images/Pasted%20image%2020260207141752.png" alt=""></p>
+<h4>nas (on n1)</h4>
+<p>ensures secure and reliable communication between the UE and the network, <em>even before granting it access to the network</em>. can have the following types of messages: 
+	- authentication request (phone sends out request)
+	- authentication reject (cell declines to proceed with the registration)
+	- registration reject (UE declines to proceed)
+	- authentication response (success!)</p>
+<p>TODO: i still don&#39;t understand why it&#39;s separated from the rest of the stack like is it flying over them why is it special or it&#39;s a security procedure running on top of application layer, like it encodes the those application layer messages? </p>
+<h4>ngap (on n1 and n2)</h4>
+<p>stands for next generation application protocol; operates on the n2 interface; it is a application layer protocol (not that this fact clarifies any questions...)</p>
+<ul>
+<li>in my head <strong>ngap</strong> should have a lots of type of messages between it should be able to communicate all sorts of control message back and forth.</li>
+<li>ngap establishment (is not UE specific, and will apply to all the UEs connected to the specified AMF)</li>
+</ul>
+<p>capabilities:</p>
+<ul>
+<li>procedures to establish, maintain and release NG-RAN part of PDU sessions;</li>
+<li>supports handovers</li>
+<li>the separation of each UE on the protocol level for user specific management </li>
+<li>the transfer of <strong>NAS</strong> messages between UE and AMF</li>
+<li>resource management</li>
+</ul>
+<p><a href="https://www.sharetechnote.com/html/5G/5G_NGAP.html">ref: full explanation</a></p>
+<h4>sctp (on n1 and n2)</h4>
+<p>stands for stream control transport protocol; seems like it&#39;s a enhanced version of tcp (addressed some tcp weaknesses); since only the communication between the gnb and the core needs to travel on the ip network; no other interface need transport layer protocol sitting there. </p>
+<h4>... (space for other protocols)</h4>
+<h3>core services</h3>
+<h4>amf (service)</h4>
+<p>central component of the core services, interacts with many other services.</p>
+<ul>
+<li>registration management<ul>
+<li>handles initial registration, authorize, and create and update UE context and status (updates happen periodically)</li>
+</ul>
+</li>
+<li>connection management<ul>
+<li>establish and release control plane connection with UE (e.g., &quot;UE context release&quot;)</li>
+</ul>
+</li>
+<li>reachability management<ul>
+<li>maintains knowledge of UE location in the network</li>
+<li>updates mobility tracking area</li>
+<li>handle handovers between base stations</li>
+</ul>
+</li>
+<li>access authentication<ul>
+<li>authenticates UE during initial registration and periodic updates</li>
+<li>verifies UE identity and SIM credentials</li>
+<li>NAS is the protocol through which these authentication messages are sent</li>
+</ul>
+</li>
+<li>(<strong>pdu</strong> session establishment) packet data unit; establishing a logical connection between UE and the core network; <strong>smf</strong> is responsible for this part, which in turn also interacts with other services; <ul>
+<li>UE initiates a pdu session by sending a request, which clarify the type of service and type of data that will be sent across;</li>
+</ul>
+</li>
+</ul>
+<h4>... (space for other core services)</h4>
+<hr>
+<h2 class="retro-h2">important processes</h2>
+<h3>cell search</h3>
+<p>38.300 - 5.2.5.3 defined 5G/NR as follows: </p>
+<blockquote>
+<p><em>Cell search is the procedure by which a UE acquires time and frequency synchronization with a cell and detects the Cell ID of that cell. NR cell search is based on the primary and secondary synchronization signals, and PBCH DMRS, located on the synchronization raster.</em></p>
+</blockquote>
+<p>me when...</p>
+<h3>cell selection</h3>
+<p>usually, ue is surrounded by many cells and can detect their signals; however, it can only camp on cell and use that one service; it must pick the best available cell that matches its registered or selected network and policies.</p>
+<ul>
+<li>a cell can be suitable (one it can sure connect to), and acceptable (not suitable but can be used as an emergency cell), and maybe be none of them; and out of all the suitable cell, ue will look at the signal strength it seems like. </li>
+<li>interestingly, if ue camps successfully and normal on a cell, it enters a <strong>idle</strong> state (just pointing out that it might be a confusing word)</li>
+<li>ue will also periodically compare the priority and signal quality of the current cell with neighboring cells, and if it meets another cell with higher priority or better signal quality, it might initiate a cell reselection process; the access network might also force a reselection. 
+<a href="https://www.sharetechnote.com/html/5G/5G_Cell_Selection.html">ref: full process here</a></li>
+</ul>
+<h3>sa initial attachment</h3>
+<p>stands for Stand Alone initial attachment; process in a nutshell (first layer bullet points): </p>
+<ul>
+<li><strong>as soon as UE powers on, this process starts</strong></li>
+<li><strong>ue searches for near-by cells and gets the cell&#39;s synchronization signals (pps and sss) to synchronize with the gnb timing (two phases: downlink and uplink synchronization)</strong><ul>
+<li>primary synchronization signal (pps) and secondary synchronization signal (sss)</li>
+<li>downlink sync: phone scans around and learns cell&#39;s timing and frequency</li>
+<li>uplink sync: cell sends back phone a timing correction and the phone applies onto itself<ul>
+<li>uplink sync is achieved by the RACH process (random access channel), where UE sends a randomly chosen preamble to the gNB, and then gNB responds with a timing adjustment</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>RRC connection establishment</strong><ul>
+<li>stands for radio resource control; it&#39;s a protocol; TODO.</li>
+<li><a href="http://sharetechnote.com/html/5G/5G_RRC_Overview.html">ref</a></li>
+</ul>
+</li>
+<li><strong>UE sends registration request to AMF to register to the network</strong></li>
+<li>(mutual) UE and network performs authentication process</li>
+<li>(mutual) UE and network performs security process (two phases: NAS and RRC security)</li>
+<li>Network Acceptance: The AMF sends a Registration Accept message to the UE, confirming successful registration and providing configuration information such as the UE&#39;s 5G-GUTI (Globally Unique Temporary Identifier).</li>
+<li>RRC Reconfiguration: Network reconfigures RRC for the registered UE based on various UE capability.</li>
+<li>PDU Session Establishment: The process of establishing data pipe. UE initiate the process and network respond to the request and setting up the data pipe.</li>
+</ul>
+<p><img src="images/Pasted%20image%2020260206155706.png" alt=""></p>
+<hr>
+<h3>core authentication</h3>
+<p>The entire signaling path for Authentication process is UE &lt;-- N1--&gt; AMF &lt;--N12--&gt;AUSF&lt;--N13--&gt;UDM
+<img src="images/Pasted%20image%2020260207134509.png" alt=""></p>
+<ul>
+<li>seaf (SEcurity Anchor Function) is a sub-function of amf.</li>
+<li>process<ul>
+<li>seaf initiates authentication (ue sends request containing suci or guci)</li>
+<li>seaf contacts ausf (seaf sends request containing suci or supi and <strong>sn-name</strong>)</li>
+<li>ausf contacts adm (ausf sends request containing aforementioned info)</li>
+<li>if not authorized at any step a response is sent back</li>
+</ul>
+</li>
+</ul>
+<p><a href="https://www.sharetechnote.com/html/5G/5G_Core_Authentication.html">ref: full process with a lot lot more details</a></p>
+<hr>
+<h2 class="retro-h2">ran architecture</h2>
+<h3>CU-CP</h3>
+<img src="images/Pasted image 20260128225349.png" width="70%">
+The CU-CP, or Central Unit - Control Plane, is responsible for the handling of control plane messaging, specifically, the control plane part of the PDCP protocol. In the CU-CP, there are five main components and four main interfaces. The CU-CP communicates directly with the 5G Core (via the N2 interface), the CU-UP (via the E1 interface), the DU-high (via the F1-c interface) and can also be connected to the near-RT RIC (via the E2 interface). This implementation takes a UE-centric approach.
+- near-RT RIC -- near-realtime ran intelligence controller 
+
+<p><strong>Components:</strong></p>
+<ul>
+<li>CU-UP Processor: Custom component for handling each CU-UP connected to the CU-CP. Multiple CU-UPs can be connected to one CU-CP, as a result the E1AP is created inside the CU-UP processor for each connected CU-UP.     </li>
+<li>DU Processor: Custom component for handling DUs for connected to the CU-CP. Each connected DU has its own DU processor with bundled F1AP, PDCP, and RRC procedures. Each UE connected to the DU also has its own RRC UE containing the PDCP processes.<ul>
+<li>DU -- distributed unit</li>
+<li>PDCP -- packet data convergence protocol<ul>
+<li>PDCP does seems very simple. Just &quot;adding the PDCP header to the incoming data and forward to RLC in downlink&quot;, or &quot;removing the PDCP header from the incoming packet and forward it to IP layer in case of uplink&quot;</li>
+</ul>
+</li>
+<li>RRC -- radio resource control</li>
+</ul>
+</li>
+<li>UE Manager: Custom component for managing connected UEs in the CU-CP. Responsible for adding and removing UEs and providing relevant UE information to other processes. Communicates information to/from the CU-UP, DU and Core.</li>
+<li>Measurement Manager: Custom component for managing cell measurement within the gNB.</li>
+<li>Mobility Manager: Custom component for managing UE mobility in the CU-CP.</li>
+</ul>
+<h3>CU-UP</h3>
+<img src="images/Pasted image 20260128225921.png" width="70%">
+The CU-UP, or Central Unit - User Plane, is responsible for the handling of user plane messaging. Specifically the user plane aspect of the PDCP and SDAP protocols. In the implementation of the CU-UP, there are four main components and four main interfaces. The CU-UP communicates directly with the UPF in the 5G Core (via the N3 interface), the CU-UP (via the E1 interface), the DU-high (via the F1-u interface), and can also be connected to the near-RT RIC (via the E2 interface).
+
+<p><strong>Components:</strong></p>
+<ul>
+<li>UE Manager: Custom component for managing connected UEs in the CU-UP. Responsible for adding and removing UEs and providing relevant UE information to other processes. Communicates information to/from the CU-CP, DU and Core.   </li>
+<li>GTP-U: The GPRS Tunneling Protocol - User Plane (GTP-U) is responsible for transporting User Plane traffic to and from the UPF of the 5G Core via the N3 interface.</li>
+<li>SDAP: The Service Data Adaptation Protocol (SDAP) is responsible for adaption and mapping of Quality of Service (QoS) requirements on User Plan traffic.</li>
+<li>PDCP: The Packet Data Convergence Protocol (PDCP) is responsible for handling the User Plane data before/ after it enters the DU-high.</li>
+</ul>
+<img src="images/Pasted image 20260128230219.png" width="70%">
+
+<h3>DU-High</h3>
+<img src="images/Pasted image 20260128231329.png" width="70%">
+The DU-high, or Distributed Unit - High, is responsible for the handling of both uplink and downlink traffic. Specifically the MAC and RLC processing of these signals. The DU-high, has three main components and three main interfaces. The DU-high communicates directly with the CU-CP and CU-UP via the F1-c and F1-u interfaces, the DU-low via the FAPI interface, and can also be connected to the near-RT RIC via the E2 interface.
+
+<p><strong>Components:</strong></p>
+<ul>
+<li><a href="https://docs.srsran.com/projects/project/en/latest/dev_guide/source/software_arch/source/DU_high/source/du_manager.html#du-manager">DU Manager</a>: The DU Manager is responsible for managing the DU, specifically the connected UEs and RAN Resources.</li>
+<li><a href="https://docs.srsran.com/projects/project/en/latest/dev_guide/source/software_arch/source/DU_high/source/rlc.html#rlc-overview">RLC</a>: The Radio Link Control (RLC) layer sits between the MAC in the DU-high and the F1AP/PDCP in the CU, and provides the transport services for SRBs and PRBs between these layers. It operates in three modes: transparent, unacknowledged and acknowledged.</li>
+<li><a href="https://docs.srsran.com/projects/project/en/latest/dev_guide/source/software_arch/source/DU_high/source/mac.html#mac">MAC</a>: The Medium Access Control (MAC) is responsible for the encoding and decoding of MAC PDUs, scheduling uplink and downlink grants and other control services.</li>
+</ul>
+<h4>MAC</h4>
+<p>The main responsibilities of the MAC are:</p>
+<ul>
+<li>Encoding and decoding of MAC PDUs that are sent/received to the PHY via the FAPI interface</li>
+<li>Contains the gNB scheduler, which allocates DL/UL grants for System Information, Paging, UE data (RLC PDUs + MAC CEs) and Random Access handling.</li>
+<li>Demultiplexing and forwarding of decoded MAC Rx SDUs to their respective logical channel.</li>
+<li>Handle received MAC CEs</li>
+<li>PRACH handling and RNTI allocation</li>
+</ul>
+<h3>DU-low</h3>
+<img src="images/Pasted image 20260128233933.png" width="70%">
+The DU-low, or Distributed Unit - Low, is responsible for the handling of both uplink and downlink traffic. Specifically, it handles the Upper PHY processing related to these signals. The DU-low, contains only the Upper PHY and has two main interfaces. The DU-low communicates directly with the DU-high via the FAPI interface, and with the RU via the Open FrontHaul (OFH) interface. The lower PHY processing is carried out in the RU. This architecture is specific to ORAN Split 7.2.
+
+<p><strong>Components:</strong></p>
+<ul>
+<li>Upper PHY: The Upper PHY handles the processing of UL and DL signals coming from and to the RU.</li>
+</ul>
+<h3>Putting it all together</h3>
+<p>![[Pasted image 20260128234332.png]]</p>
+<hr>
+<h2 class="retro-h2">random topics</h2>
+<h3>turning info into waves</h3>
+<p><img src="images/Pasted%20image%2020260205223725.png" alt=""></p>
+<ul>
+<li>(modulating signal) the wave that carries actual information; different types of information (e.g., video, audio, digital) each have a natural frequency range that it falls into. </li>
+<li>(carrier signal) we want to modulate the actual signal onto a carrier signal so that the signal is on a special frequency (one that the receiver is configured to listen on), as opposed to having it in its natural frequency; since in the latter case, all signals collide. <a href="https://electronics.stackexchange.com/questions/598767/what-is-the-purpose-of-a-carrier-signal-in-communication-technology">ref to a good stack exchange answer</a></li>
+<li>(signal modulation) manipulate one or more properties of periodic waveforms to carry information. the vanilla signal is called the carrier signal. <ul>
+<li>amplitude modulation (AM) - e.g., am radio, TV signal</li>
+<li>frequency modulation (FM) - e.g., most other things? </li>
+<li>pulse modulation (rare and antiquated) - toggling the sine wave on and off</li>
+</ul>
+</li>
+<li>(modem) stands for modulator-demodulator; has a transmitter and a receiver; modulates analog signal to digital data and the other way around; allows all wireless communication. </li>
+<li>(hertz) unit of frequency, one hertz = one event per second.</li>
+</ul>
+<h3>bandwidth</h3>
+<p><img src="images/Pasted%20image%2020260205143540.png" alt="">
+Channel Bandwidth(CBW) = (N_RB x NumOfSubcarrier x SCS) + (GuardBand x 2)</p>
+<h3>mmWaves (millimeter wave) and massive MIMO</h3>
+<ul>
+<li>(subcarrier spacing) scs or numerology.</li>
+<li>(sim) gives a special subscriber identity, so that the cellular network can link this user to a plan.
+srsran and open5gs run an open RAN compliant gnb (interestingly core is not included in the gnb part, so it&#39;s just the part with srsran and usrp, it&#39;s the definition apparently)</li>
+</ul>
+<h3>two frequency ranges</h3>
+<p>In NR, there are two large frequency range specified in 3GPP. One is what we usually call &quot;Sub 6 Ghz&quot; (also FR1) and the other is what we usually call &quot;millimeter wave&quot; (mmWaves, also FR2). Depending on the ranges, the maximum bandwidth and subcarrier spacing varies.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>corresponding frequency range</th>
+<th>band</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>FR1</td>
+<td>450-6000 MHz</td>
+<td>n1-n102</td>
+</tr>
+<tr>
+<td>FR2</td>
+<td>24250-52600 MHz</td>
+<td>n257-n263</td>
+</tr>
+</tbody></table>
+<p>In Sub 6 Ghz, the maximum bandwidth is 100 Mhz and in millimeter wave range the maximum bandwidth is 400 Mhz. Some subcarrier spacing (15, 30 Khz)  can be used only in Sub 6 Ghz and some subcarrier spacing (120 Khz) can be used in millimeter wave range only, and some subcarrier spacing (60 Khz) can be used both in sub 6 Ghz and millimeter wave range. </p>
+<p>ref: <a href="https://www.sharetechnote.com/html/5G/5G_FR_Bandwidth.html#38_101_1_Table_5_2_1">a table that maps NR bands to frequencies</a></p>
+
+    </div>
+
+    <footer-component id="footer"></footer-component>
+
+</body>
+</html>
