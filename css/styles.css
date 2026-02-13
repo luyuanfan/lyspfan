@@ -195,10 +195,10 @@ figcaption {
     color: rgb(220, 219, 219);
     font-size: larger;
     font-family: "ms pgothic web", tahoma, sans-serif;
-    border-image: url("../images/border.gif") 0 10 repeat;
+    /* border-image: url("../images/border-1.jpeg") 10 10 repeat;
     border-image-repeat: round;
     border-left: 20px solid;
-    border-right: 20px solid;
+    border-right: 20px solid; */
 }
 .crazy-box a {
     color: #e841dd;
