@@ -23,6 +23,6 @@ jobs:
 
       # - name: commit and push changes
       #   run: |
-      #     git add html/5g.html
+      #     git add content/5g.html
       #     git commit -m "sync webpage to notes repo content"
       #     git push
